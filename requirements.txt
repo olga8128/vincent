@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+tensorflow-cpu==2.13.0
+cv2
+numpy

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vincent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="amber lighten-2">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo logo brown-text">
+        <img src="assets/logo.png" alt="Van Gogh logo" class="image-logo" />
+        VINCENT
+      </a>
+      <a href="#" data-target="mobile-nav" class="sidenav-trigger brown-text"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#home" class="brown-text">HOME</a></li>
+        <li><a href="#create" class="brown-text">CREATE PICTURE</a></li>
+        <li><a href="#about" class="brown-text">ABOUT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-nav">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#create">CREATE PICTURE</a></li>
+    <li><a href="#about">ABOUT</a></li>
+  </ul>
+
+   <main>
+      <div id="home">
+        <div class="row valign-wrapper">
+          <!-- Texto primero en móviles -->
+          <div class="col s12 m12 l12 center-align">
+            <h2 class="center-align">Welcome!</h2>
+            <p>Hello, I'm Vincent! I can draw a picture for you.</p>
+          </div>
+
+        </div>
+        <div class="row valign-wrapper">
+          <!-- Imagen -->
+          <div class="col s12 m12 l12 center-align">
+            <img src="assets/vangogh-face.png" alt="Van Gogh animado" class="responsive-img van-gogh-face" />
+          </div>
+
+        </div>
+      </div>
+
+
+      <div id="create">
+        <div class="row valign-wrapper">
+          <div class="col s12 m12 l12 center-align">
+            <h2 class="center-align">Choose an image and I'll draw a pic!</h2>
+            <p> I'm good with landscapes, flowers and portraits.</p>
+          </div>
+        </div>
+        <div class="row valign-wrapper">
+            <!-- Botón para subir imagen -->
+            <div class="file-field input-field col s12 m12 l6 center-align">
+              <div class="btn amber darken-1">
+                <span class="brown-text">Upload image</span>
+                <input type="file" id="input-image" accept="image/*" />
+              </div>
+              <div class="file-path-wrapper col s12 m12 l6 center-align" >
+                <input class="file-path validate brown-text" type="text" placeholder="Select an image file - jpg or png"/>
+              </div>
+            </div>
+        </div> 
+        <div class="row valign-wrapper"> 
+          <div class="col s12 m12 l12 center-align">
+          <!-- Botón para convertir -->
+            <div class="center-align">
+              <a class="waves-effect waves-light btn amber darken-2 brown-text" onclick="convertImage()">
+                <i class="material-icons left">brush</i>Convert to picture!
+              </a>
+            </div>
+          </div>
+        </div>
+      <div class="row valign-wrapper">
+        <!-- Columna Izquierda: imagen original -->
+        <div class="col s12 m12 l12 center-align">
+          <img id="preview" class="painted-img z-depth-3" style="display: none;" />
+        </div>
+        <!-- Columna Derecha: controles y resultado -->
+        <div class="col s12 m12 l12 center-align">
+          <!-- Imagen generada -->
+          <img id="result" class="painted-img z-depth-3" style="display: none;" />
+        </div>
+      </div>
+    </div>
+
+    <div id="about">
+      <div class="row valign-wrapper">
+        <div class="col s12 m12 l12 center-align">
+          <h2 class="center-align">About this app</h2>
+        </div>
+      </div>
+      <div class="row valign-wrapper">
+        <div class="col s12 m12 l12 left" style="margin-left: 10%; margin-right: 10%;">
+          <div class="card-panel yellow lighten-5 z-depth-2 indented" style="margin-bottom: 20px;">
+            <p>
+              This application transforms your photos into stunning works of art inspired by the unique style of Vincent Van Gogh, using the power of artificial intelligence. Our model has been trained to understand and reproduce the master’s characteristic brushstrokes, vibrant colors, and expressive textures, creatively applying them to your images. Developed with passion by lovers of both art and technology, this app aims to inspire you to see everyday moments through a new lens—one filled with colors, strokes, and emotions reminiscent of Van Gogh’s masterpieces.
+              At the core of this app is a Pix2Pix convolutional neural network, a type of deep learning model designed for image-to-image translation. Pix2Pix works by learning how to map an input image to a corresponding target image, enabling the model to "paint" your photos in a specific style.
+            </p>
+          </div>
+          <div class="card-panel amber lighten-4 z-depth-2 indented">
+            <p>
+              For training, we used a dataset of Van Gogh’s paintings and drawings obtained from WikiArt as the target images. The input images were contour representations of these artworks, generated using techniques such as K-means clustering (to simplify colors) and median blur (to smooth the shapes). By training on pairs of input and target images, the model learns to fill in the contours with colors and textures that replicate Van Gogh’s style.
+              When you create a new image, the app first converts your photo into a contour-like version using the same K-means and median blur process. This processed image is then passed through the trained Pix2Pix generator, which produces a final image in Van Gogh’s distinctive artistic style.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+<!-- Footer -->
+<footer>
+  <p>© 2025 Vincent - Made with art and coding</p>
+</footer>
+<!-- Scripts javascript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
